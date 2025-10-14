@@ -133,6 +133,9 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
             TableColumnInlineView,
             TableModelView,
         )
+
+        from superset.custom_data.api import BookRestApi
+
         from superset.css_templates.api import CssTemplateRestApi
         from superset.dashboards.api import DashboardRestApi
         from superset.dashboards.filter_sets.api import FilterSetRestApi
@@ -200,6 +203,8 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
         #
         # Setup API views
         #
+        appbuilder.add_api(BookRestApi)
+
         appbuilder.add_api(AnnotationRestApi)
         appbuilder.add_api(AnnotationLayerRestApi)
         appbuilder.add_api(AsyncEventsRestApi)
