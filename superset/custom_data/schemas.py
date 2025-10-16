@@ -12,11 +12,13 @@ book_name_description = "A description of the book name."
 author_name_description = "A description for the author name"
 description_description = "Description"
 
-class BookSchema(Schema):  # not SQLAlchemySchema
+# Schema cho book
+class BookSchema(Schema):
     id = fields.Int(required=True)
     book_name = fields.Str(required=True)
     author_name = fields.Str(required=True)
 
+# Schema cho book khi gọi phương thức POST
 class BookPostSchema(Schema):
     id = fields.Integer(
         metadata={"description":id_description},
@@ -37,11 +39,13 @@ class BookPostSchema(Schema):
     )
     tags = fields.Nested(BookSchema, many=True)
 
+# Schema cho book khi gọi phương thức GET
 class BookGetResponseSchema(Schema):
     id = fields.Int()
     book_name = fields.String()
     author_name = fields.String()
 
+# Schema cho book khi gọi phương thức PUT
 class BookPutSchema(Schema):
     book_name = fields.String(
         metadata={"description":book_name_description},

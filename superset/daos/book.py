@@ -12,8 +12,9 @@ from superset.commands.book.exceptions import BookNotFoundError
 
 logger = logging.getLogger(__name__)
 
+# Định nghĩa lớp DAO của Book để giao tiếp với DB
 class BookDAO(BaseDAO[Book]):
-    base_filter = DatabaseFilter
+    base_filter = DatabaseFilter   # Định nghĩa filter để hạn chế quyền truy cập của người dùng cho mọi truy vấn
 
     # @classmethod
     # def update(
@@ -30,6 +31,7 @@ class BookDAO(BaseDAO[Book]):
 
     #     return super().update(item, attributes, commit)
 
+    # Định nghĩa phương thức class để lấy dữ liệu Book (gọi phương thức "get" của Book)
     @classmethod
     def get_by_id(cls, id: int) -> Book:
         book = Book.get(id)
@@ -38,10 +40,10 @@ class BookDAO(BaseDAO[Book]):
         
         return book
     
-    
-def is_uuid(value: str | int) -> bool:
-    try:
-        uuid.UUID(str(value))
-        return True
-    except ValueError:
-        return False
+# Kiểm tra lại code mình mới thấy hàm này bị thừa ¯\_(ツ)_/¯
+# def is_uuid(value: str | int) -> bool:
+#     try:
+#         uuid.UUID(str(value))
+#         return True
+#     except ValueError:
+#         return False
